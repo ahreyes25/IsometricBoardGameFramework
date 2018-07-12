@@ -1,3 +1,3 @@
 var gridCoords = WorldToGrid(mouse_x, mouse_y);
-currentBoardX  = gridCoords[0];
-currentBoardY  = gridCoords[1];
+oGameController.boardController.currentBoardX  = gridCoords[0];
+oGameController.boardController.currentBoardY  = gridCoords[1];

@@ -7,7 +7,7 @@
         "7fe52678-47de-4036-8222-bdde438f1c5e"
     ],
     "filterType": "GMScript",
-    "folderName": "Draw",
+    "folderName": "DrawScripts",
     "isDefaultView": false,
     "localisedFolderName": ""
 }

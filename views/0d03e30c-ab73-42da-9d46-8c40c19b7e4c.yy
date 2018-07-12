@@ -4,8 +4,8 @@
     "mvc": "1.1",
     "name": "0d03e30c-ab73-42da-9d46-8c40c19b7e4c",
     "children": [
-        "b56d4f3a-b189-4d4b-9db2-1cbf1c549648",
-        "c8248827-2e90-4409-a3c6-de8f9fa80358",
+        "a83078c8-2231-4fea-9fe5-76a59ae21f62",
+        "4f62a319-eda8-4332-a558-1b8c12d8c1b6",
         "618948df-d9c7-4ffc-a96b-295157a1444d"
     ],
     "filterType": "GMScript",

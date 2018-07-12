@@ -7,13 +7,13 @@
     "inheritCreationOrder": false,
     "inheritLayers": false,
     "instanceCreationOrderIDs": [
-        "330eb58d-de9b-4788-aee2-212ee068a750"
+        "174aa713-0c7d-41c8-b0ea-98c8872713ce"
     ],
     "IsDnD": false,
     "layers": [
         {
             "__type": "GMRInstanceLayer_Model:#YoYoStudio.MVCFormat",
-            "name": "Instances",
+            "name": "Controllers",
             "id": "6e408a02-4fdf-4ada-a5ab-6c564ce49f75",
             "depth": 0,
             "grid_x": 32,
@@ -25,7 +25,7 @@
             "inheritSubLayers": false,
             "inheritVisibility": false,
             "instances": [
-{"name": "inst_5D21D0D1","id": "330eb58d-de9b-4788-aee2-212ee068a750","colour": { "Value": 4294967295 },"creationCodeFile": "","creationCodeType": "","ignore": false,"inheritCode": false,"inheritItemSettings": false,"IsDnD": false,"m_originalParentID": "00000000-0000-0000-0000-000000000000","m_serialiseFrozen": false,"modelName": "GMRInstance","name_with_no_file_rename": "inst_5D21D0D1","objId": "ca79aed9-ccbf-4fa3-9ab3-5425d3c852bd","properties": null,"rotation": 0,"scaleX": 1,"scaleY": 1,"mvc": "1.0","x": 0,"y": 0}
+{"name": "inst_1CC0CB7D","id": "174aa713-0c7d-41c8-b0ea-98c8872713ce","colour": { "Value": 4294967295 },"creationCodeFile": "","creationCodeType": "","ignore": false,"inheritCode": false,"inheritItemSettings": false,"IsDnD": false,"m_originalParentID": "00000000-0000-0000-0000-000000000000","m_serialiseFrozen": false,"modelName": "GMRInstance","name_with_no_file_rename": "inst_1CC0CB7D","objId": "fdfa7a5e-0d5e-429c-a4ac-0db599d0dc27","properties": null,"rotation": 0,"scaleX": 1,"scaleY": 1,"mvc": "1.0","x": 0,"y": 0}
             ],
             "layers": [
 
@@ -39,7 +39,7 @@
         },
         {
             "__type": "GMRBackgroundLayer_Model:#YoYoStudio.MVCFormat",
-            "name": "Background",
+            "name": "Grid",
             "id": "62850bad-ffd4-455c-9ccc-eec44913f1e4",
             "animationFPS": 15,
             "animationSpeedType": "0",

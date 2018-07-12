@@ -7,7 +7,7 @@
         "1c4b53a6-57e4-437c-bf57-27658f1cd58d"
     ],
     "filterType": "GMScript",
-    "folderName": "Logic",
+    "folderName": "LogicScripts",
     "isDefaultView": false,
     "localisedFolderName": ""
 }
