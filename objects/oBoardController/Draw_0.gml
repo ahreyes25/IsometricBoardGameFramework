@@ -1,1 +1,3 @@
+DrawBoardTerrain();
+// DrawBoardDecoration();
 DrawUnitCursor();
