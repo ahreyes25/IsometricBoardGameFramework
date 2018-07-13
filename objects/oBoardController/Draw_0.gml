@@ -1,3 +1,4 @@
-DrawBoardTerrain();
-// DrawBoardDecoration();
-DrawUnitCursor();
+DrawGround();
+DrawCursor();
+
+DebugGridValues();

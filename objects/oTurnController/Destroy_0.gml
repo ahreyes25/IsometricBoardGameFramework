@@ -1,3 +1,3 @@
-ds_list_destroy(blueTeam);
-ds_list_destroy(redTeam);
+ds_list_destroy(whiteTeam);
+ds_list_destroy(blackTeam);
 ds_list_destroy(teams);

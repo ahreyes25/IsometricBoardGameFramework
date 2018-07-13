@@ -1,0 +1,20 @@
+Ground:
+	000 = grass
+	001 = dirt
+	002 = water
+	
+Decoration:
+	000 = no decoration
+	010 = building
+	020 = tree
+	030 = mountain
+	
+Units:
+	000 = no unit
+	100 = team1
+	200 = team2
+	
+Final Examples:
+	Space with Dirt and Building			= 011
+	Space with water and player on team 1	= 102
+	Space with grass and mountain			= 030

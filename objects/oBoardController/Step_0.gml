@@ -1,2 +1,1 @@
 UpdateCurrentBoardPosition();
-PlaceUnitOnBoard();

@@ -13,8 +13,8 @@
     "layers": [
         {
             "__type": "GMRInstanceLayer_Model:#YoYoStudio.MVCFormat",
-            "name": "Terrain",
-            "id": "53341b2b-dda8-4c4d-8f99-e6a210b4792c",
+            "name": "World",
+            "id": "ece2a3d5-9ec9-4b8c-b507-0ff166376530",
             "depth": 0,
             "grid_x": 32,
             "grid_y": 32,
@@ -39,8 +39,8 @@
         },
         {
             "__type": "GMRInstanceLayer_Model:#YoYoStudio.MVCFormat",
-            "name": "Units",
-            "id": "ece2a3d5-9ec9-4b8c-b507-0ff166376530",
+            "name": "Ground",
+            "id": "db2fd4c6-7cff-4569-906a-f55ce8e80cdc",
             "depth": 100,
             "grid_x": 32,
             "grid_y": 32,
