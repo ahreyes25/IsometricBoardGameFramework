@@ -1,4 +1,5 @@
 DrawGround();
 DrawCursor();
 
-DebugGridValues();
+if (oGameController.debugging)
+	DebugGridValues();

@@ -19,7 +19,11 @@ showAttackRange   = false;
 rangeVisualizer = instance_create_layer(x, y, "World", oRangeVisualizer);
 rangeVisualizer.parent = id;
 
-currentBoardX = noone;
-currentBoardY = noone;
+currentBoardX	= noone;
+currentBoardY	= noone;
+
+active			= false;
+
+unitInspecting	= noone;
 
 image_speed = 0.5;

@@ -1,0 +1,1 @@
+camera.zoom = !camera.zoom;

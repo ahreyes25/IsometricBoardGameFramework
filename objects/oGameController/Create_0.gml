@@ -15,6 +15,8 @@ for (var i = 0; i < boardWidth; i++)  {
 unitWidth  = 64;
 unitHeight = 32;
 
+debugging  = false;
+
 // Controllers
 boardController = instance_create_layer(0, 0, "Controllers", oBoardController);
 turnController  = instance_create_layer(0, 0, "Controllers", oTurnController);
@@ -67,3 +69,6 @@ turnController.currentPlayerTurn = ds_list_find_value(turnController.currentTeam
 // Get Order Info
 UpdateTeamOrder();
 UpdatePlayerOrder();
+
+// Create camera
+camera = instance_create_layer(0, 0, "Controllers", oCamera);
