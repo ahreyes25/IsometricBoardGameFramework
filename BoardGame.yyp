@@ -362,6 +362,25 @@
             }
         },
         {
+            "Key": "3286d43b-185d-4b08-92a1-a291a7161ebd",
+            "Value": {
+                "id": "dee70141-9d2b-4a3a-bf71-7c99a3568658",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "scripts\/NormalizeVector\/NormalizeVector.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "33e5ca7c-0fa6-4522-8eb2-7f769fe0c9f2",
             "Value": {
                 "id": "f35b431e-250f-432c-a21a-439c563abda6",
@@ -1544,6 +1563,7 @@
         "fc9b97d3-4656-45bc-9b17-9d1de86df62d",
         "fdaa9b93-c925-41fe-9a90-6bfdde9cda0e",
         "8686dfdd-9bd1-446e-9485-2b770d831da5",
+        "3286d43b-185d-4b08-92a1-a291a7161ebd",
         "39a22cdc-233a-418f-a262-0c4e55370629"
     ],
     "tutorial": ""

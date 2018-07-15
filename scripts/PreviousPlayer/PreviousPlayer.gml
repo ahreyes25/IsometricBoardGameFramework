@@ -35,6 +35,9 @@ else {
 // Set Current Player, we need to update who the current player is
 oGameController.turnController.currentPlayerTurn = ds_list_find_value(oGameController.turnController.currentTeamTurn, oGameController.turnController.currentPlayerIndex);
 
+oGameController.turnController.currentPlayerTurn.state  = unitState.selectingMovement;
+oGameController.turnController.nextPlayerTurn.state		= unitState.waiting
+
 // Lastly, update all of our other turn variables before we move on...
 UpdateTeamOrder();
 UpdatePlayerOrder();

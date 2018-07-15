@@ -14,8 +14,8 @@ for (var i = -range; i <= range; i++) {
 	for (var j = range - abs(i); j > 0; j--) {
 		tj = gj - j;
 		
-		if (ti < oGameController.boardController.boardWidth && 
-			tj < oGameController.boardController.boardHeight &&
+		if (ti < oGameController.boardWidth  && 
+			tj < oGameController.boardHeight &&
 			ti >= 0 && tj >= 0) {
 				worldCoords = GridToWorld(ti, tj);
 				draw_sprite_ext(sCursor, 0, worldCoords[0], worldCoords[1], 1, 1, 0, col, 0.5);
@@ -23,8 +23,8 @@ for (var i = -range; i <= range; i++) {
 		
 		tj = gj + j;
 		
-		if (ti < oGameController.boardController.boardWidth && 
-			tj < oGameController.boardController.boardHeight &&
+		if (ti < oGameController.boardWidth  && 
+			tj < oGameController.boardHeight &&
 			ti >= 0 && tj >= 0) {
 				worldCoords = GridToWorld(ti, tj);
 				draw_sprite_ext(sCursor, 0, worldCoords[0], worldCoords[1], 1, 1, 0, col, 0.5);
@@ -38,8 +38,8 @@ for (var i = -range; i <= range; i++) {
 	ti = gi + i;
 	tj = gj;
 	
-	if (ti < oGameController.boardController.boardWidth && 
-		tj < oGameController.boardController.boardHeight &&
+	if (ti < oGameController.boardWidth  && 
+		tj < oGameController.boardHeight &&
 		ti >= 0 && tj >= 0) {
 			worldCoords = GridToWorld(ti, tj);
 			draw_sprite_ext(sCursor, 0, worldCoords[0], worldCoords[1], 1, 1, 0, col, 0.5);
