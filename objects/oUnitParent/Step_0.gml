@@ -26,10 +26,13 @@ if (oGameController.turnController.currentPlayerTurn.id == id) {
 			
 			// Check if space clicked is in range
 			if (BoardDistance(mouseGridCoords[0], mouseGridCoords[1], currentBoardX, currentBoardY) <= movementRange && 
-				!IsTerrain(mouseGridCoords[0], mouseGridCoords[1]) && !IsUnit(mouseGridCoords[0], mouseGridCoords[1])) {
-				moveToTargetX = mouseGridCoords[0];
-				moveToTargetY = mouseGridCoords[1];
-				state = unitState.movingToTarget;	
+				!IsTerrain(mouseGridCoords[0], mouseGridCoords[1]) && !IsUnit(mouseGridCoords[0], mouseGridCoords[1]) && 
+				!SpecificGround(mouseGridCoords[0], mouseGridCoords[1], ground.water)) {
+					moveToTargetX = mouseGridCoords[0];
+					moveToTargetY = mouseGridCoords[1];
+					startBoardX = currentBoardX;
+					startBoardY = currentBoardY;
+					state = unitState.movingToTarget;	
 			}
 		}
 		// Skip moving phase
@@ -43,22 +46,71 @@ if (oGameController.turnController.currentPlayerTurn.id == id) {
 	else if (state == unitState.movingToTarget) {
 		showMovementRange = false;
 		showAttackRange   = false;
-	
-		var targetCoords	= GridToWorld(moveToTargetX, moveToTargetY);
-		var currentCoords	= GridToWorld(currentBoardX, currentBoardY);
-		var dirVector		= point_direction(currentCoords[0], currentCoords[1], targetCoords[0], targetCoords[1]);
-		var lenVector		= point_distance(currentCoords[0], currentCoords[1], targetCoords[0], targetCoords[1]);
-		var moveVector		= [lengthdir_x(lenVector, dirVector), lengthdir_y(lenVector, dirVector)];
-		var normVector		= [moveVector[0] / lenVector, moveVector[1] / lenVector];
 		
-		if (x != targetCoords[0]) {
-			x += normVector[0];
-		}
-		if (y != targetCoords[1]) {
-			y += normVector[1];
+		// Move To X Position
+		if (!movedToX) {
+			var targetCoords = GridToWorld(moveToTargetX, startBoardY);
+			var dirVector	 = point_direction(x, y, targetCoords[0], targetCoords[1]);
+			var lenVector	 = point_distance(x, y, targetCoords[0], targetCoords[1]);
+			var moveVector	 = [lengthdir_x(lenVector, dirVector), lengthdir_y(lenVector, dirVector)];
+			var normVector	 = [moveVector[0] / lenVector, moveVector[1] / lenVector];
+		
+			if (x + movementSpeed < targetCoords[0] || x - movementSpeed > targetCoords[0]) {
+				x += normVector[0] * movementSpeed;
+			}
+			else {
+				x = targetCoords[0];	
+			}
+			
+			if (y + movementSpeed < targetCoords[1] || y - movementSpeed > targetCoords[1]) {
+				y += normVector[1] * movementSpeed;
+			}
+			else {
+				y = targetCoords[1];	
+			}
+		
+			if (x == targetCoords[0] && y == targetCoords[1]) {
+				movedToX = true;
+			}
 		}
 		
-		if (x == targetCoords[0] && y == targetCoords[1]) {
+		// Move To Y Position
+		else if (!movedToY) {
+			var targetCoords = GridToWorld(moveToTargetX, moveToTargetY);
+			var dirVector	 = point_direction(x, y, targetCoords[0], targetCoords[1]);
+			var lenVector	 = point_distance(x, y, targetCoords[0], targetCoords[1]);
+			var moveVector	 = [lengthdir_x(lenVector, dirVector), lengthdir_y(lenVector, dirVector)];
+			var normVector	 = [moveVector[0] / lenVector, moveVector[1] / lenVector];
+		
+			if (x + movementSpeed < targetCoords[0] || x - movementSpeed > targetCoords[0]) {
+				x += normVector[0] * movementSpeed;
+			}
+			else {
+				x = targetCoords[0];	
+			}
+			
+			if (y + movementSpeed < targetCoords[1] || y - movementSpeed > targetCoords[1]) {
+				y += normVector[1] * movementSpeed;
+			}
+			else {
+				y = targetCoords[1];	
+			}
+		
+			if (x == targetCoords[0] && y == targetCoords[1]) {
+				movedToY = true;
+			}
+		}
+		
+		// Finished moving
+		if (movedToX && movedToY) {
+			// update variables
+			movedToX = false;
+			movedToY = false;
+			
+			// update grid values
+			
+			
+			// Continue to next state
 			state = unitState.selectingAttackTarget;
 		}
 	}

@@ -1388,6 +1388,25 @@
             }
         },
         {
+            "Key": "ecb4da95-8836-4b95-885e-6bb3139b075a",
+            "Value": {
+                "id": "0ff7e6ae-d4ef-4313-91e0-0356c725c302",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "scripts\/UpdateBoardPlayerPosition\/UpdateBoardPlayerPosition.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "ee44a16c-2772-4d45-a48d-1bf6d393ef39",
             "Value": {
                 "id": "c2ee83a4-c3c2-40a9-a6ff-8e90dd457ea1",
@@ -1553,6 +1572,7 @@
         "e7083532-b4e6-4792-ac72-cbdb5850c5dd",
         "2413b1d3-5c15-4e58-b566-bb6a348e5f8e",
         "c2da0165-0195-49b6-98cd-c1a0d1f9454e",
+        "ecb4da95-8836-4b95-885e-6bb3139b075a",
         "f5256034-9907-40ee-996a-07894d2d2c4f",
         "9fb9e28d-4a6b-49c8-ab17-30abeeb79af4",
         "eb67bf6d-b2e8-42b1-8311-39862e37a386",

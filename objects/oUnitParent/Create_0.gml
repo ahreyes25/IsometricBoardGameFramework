@@ -20,12 +20,14 @@ showAttackRange   = false;
 rangeVisualizer = instance_create_layer(x, y, "World", oRangeVisualizer);
 rangeVisualizer.parent = id;
 
-startingX		= noone;
-startingY		= noone;
+startBoardX		= noone;
+startBoardY		= noone;
 currentBoardX	= noone;
 currentBoardY	= noone;
 moveToTargetX	= noone;
 moveToTargetY	= noone;
+movedToX		= false;
+movedToY		= false;
 
 active			= false;
 state			= unitState.waiting;
