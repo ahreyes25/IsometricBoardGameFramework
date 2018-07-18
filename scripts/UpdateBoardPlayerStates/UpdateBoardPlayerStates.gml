@@ -14,9 +14,11 @@ else {
 }
 	
 // If we moved from old spot and it still holds a state value
-if (HasState(startBoardX, startBoardY)) {
-	// Erase all state values in old spot
-	while (ds_grid_get(oGameController.board, startBoardX, startBoardY) > 1000) {
-		ds_grid_set(oGameController.board, startBoardX, startBoardY, ds_grid_get(oGameController.board, startBoardX, startBoardY) - 1000);
+if (startBoardX != noone && startBoardY != noone) {
+	if (HasState(startBoardX, startBoardY)) {
+		// Erase all state values in old spot
+		while (ds_grid_get(oGameController.board, startBoardX, startBoardY) > 1000) {
+			ds_grid_set(oGameController.board, startBoardX, startBoardY, ds_grid_get(oGameController.board, startBoardX, startBoardY) - 1000);
+		}
 	}
 }
