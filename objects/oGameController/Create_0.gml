@@ -35,8 +35,11 @@ for (var i = 0; i < 2; i++) {
 	var worldCoords = GridToWorld(gi, gj);
 	var u = instance_create_layer(worldCoords[0], worldCoords[1], "World", oUnitParent);
 	u.sprite_index = sPlayer1Idle;
+	u.state = unitState.waiting;
+	u.team = unit.white;
 	ds_list_add(turnController.whiteTeam, u);
-	ds_grid_set(board, gi, gj, ds_grid_get(board, gi, gj) + 100);
+	ds_grid_set(board, gi, gj, ds_grid_get(board, gi, gj) + u.team);
+	ds_grid_set(board, gi, gj, ds_grid_get(board, gi, gj) + u.state);
 }
 
 // Create black team
@@ -53,8 +56,11 @@ for (var i = 0; i < 2; i++) {
 	var worldCoords = GridToWorld(gi, gj);
 	var u = instance_create_layer(worldCoords[0], worldCoords[1], "World", oUnitParent);
 	u.sprite_index = sPlayer2Idle;
+	u.state = unitState.waiting;
+	u.team = unit.black;
 	ds_list_add(turnController.blackTeam, u);
-	ds_grid_set(board, gi, gj, ds_grid_get(board, gi, gj) + 200);
+	ds_grid_set(board, gi, gj, ds_grid_get(board, gi, gj) + u.team);
+	ds_grid_set(board, gi, gj, ds_grid_get(board, gi, gj) + u.state);
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

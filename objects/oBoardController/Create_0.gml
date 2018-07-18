@@ -10,6 +10,11 @@ enum terrain {
 	mountain  = 30,
 }
 
+enum unit {
+	white = 100,
+	black = 200,
+}
+
 // Board management variables
 currentBoardX = noone;
 currentBoardY = noone;

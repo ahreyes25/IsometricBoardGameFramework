@@ -13,11 +13,21 @@ if (oGameController.turnController.currentPlayerTurn.id == id) {
 	// Player State Machine
 	
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	// Idle State
+	if (state == unitState.idle) {
+		// Draw Options to show move or attack
+		if (keyboard_check_pressed(vk_enter)) {
+			state = unitState.selectingMovement;
+		}
+		UpdateBoardPlayerStates();
+	}
+	
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// Selecting Movement State
-	if (state == unitState.selectingMovement) {
+	else if (state == unitState.selectingMovement) {
 		Input();
-		showMovementRange = true;
-		showAttackRange   = false;
+		showingMovementRange = true;
+		showingAttackRange   = false;
 		
 		Input();
 		// Click on Space To Move To It
@@ -35,17 +45,14 @@ if (oGameController.turnController.currentPlayerTurn.id == id) {
 					state = unitState.movingToTarget;	
 			}
 		}
-		// Skip moving phase
-		else if (skipPhasePressed) {
-			state = unitState.selectingAttackTarget;
-		}
+		UpdateBoardPlayerStates();
 	}
 	
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// Moving To Target State
 	else if (state == unitState.movingToTarget) {
-		showMovementRange = false;
-		showAttackRange   = false;
+		showingMovementRange = false;
+		showingAttackRange   = false;
 		
 		// Move To X Position
 		if (!movedToX) {
@@ -108,7 +115,7 @@ if (oGameController.turnController.currentPlayerTurn.id == id) {
 			movedToY = false;
 			
 			// update grid values
-			
+			UpdateBoardPlayerPosition();
 			
 			// Continue to next state
 			state = unitState.selectingAttackTarget;
@@ -118,29 +125,43 @@ if (oGameController.turnController.currentPlayerTurn.id == id) {
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// Selecting Attack Target State
 	else if (state == unitState.selectingAttackTarget) {
-		showMovementRange = false;
-		showAttackRange   = true;
+		showingMovementRange = false;
+		showingAttackRange   = true;
+		UpdateBoardPlayerStates();
 	}
 	
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// Melee Combat State
 	else if (state == unitState.meleeCombat) {
-		showMovementRange = false;
-		showAttackRange   = false;
+		showingMovementRange = false;
+		showingAttackRange   = false;
+		UpdateBoardPlayerStates();
 	}
 	
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// Ranged Combat State
 	else if (state == unitState.rangedCombat) {
-		showMovementRange = false;
-		showAttackRange   = false;
+		showingMovementRange = false;
+		showingAttackRange   = false;
+		UpdateBoardPlayerStates();
 	}
 	
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-	// Inspecting Other Unit State
-	else if (state == unitState.inspectingOtherUnit) {
-		showMovementRange = false;
-		showAttackRange   = false;
+	// Show Attack Range State
+	else if (state == unitState.showAttackRange) {
+		showingMovementRange = false;
+		showingAttackRange   = true;
+		active				 = false;
+		UpdateBoardPlayerStates();
+	}
+	
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	// Show Movement Range State
+	else if (state == unitState.showMovementRange) {
+		showingMovementRange = true;
+		showingAttackRange   = false;
+		active				 = false;
+		UpdateBoardPlayerStates();
 	}
 }	
 // Not player turn
@@ -151,7 +172,8 @@ else {
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// Waiting State
 	if (state == unitState.waiting) {
-		showAttackRange   = false;
-		showMovementRange = false;
+		showingAttackRange   = false;
+		showingMovementRange = false;
+		UpdateBoardPlayerStates();
 	}
 }

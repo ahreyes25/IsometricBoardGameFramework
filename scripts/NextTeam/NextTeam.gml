@@ -23,7 +23,7 @@ oGameController.turnController.currentPlayerIndex = 0;
 oGameController.turnController.currentTeamTurn		= ds_list_find_value(oGameController.turnController.teams, oGameController.turnController.currentTeamIndex);
 oGameController.turnController.currentPlayerTurn	= ds_list_find_value(oGameController.turnController.currentTeamTurn, oGameController.turnController.currentPlayerIndex);
 
-oGameController.turnController.currentPlayerTurn.state  = unitState.selectingMovement;
+oGameController.turnController.currentPlayerTurn.state  = unitState.idle;
 
 // Update all of our other variables before moving on...
 UpdateTeamOrder();

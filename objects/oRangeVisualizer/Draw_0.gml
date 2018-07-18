@@ -1,8 +1,8 @@
-if (parent.showMovementRange) {
+if (parent.showingMovementRange) {
 	var gridCoords = WorldToGrid(x, y);
-	ShowRange(gridCoords[0], gridCoords[1], parent.movementRange, c_blue);
+	ShowRange(gridCoords[0], gridCoords[1], parent.movementRange, "movement");
 }
-else if (parent.showAttackRange) {
+else if (parent.showingAttackRange) {
 	var gridCoords = WorldToGrid(x, y);
-	ShowRange(gridCoords[0], gridCoords[1], parent.attackRange, c_red);
+	ShowRange(gridCoords[0], gridCoords[1], parent.attackRange, "attack");
 }
