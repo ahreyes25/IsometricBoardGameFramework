@@ -1,14 +1,17 @@
-/// @param x1
-/// @param y1
-/// @param x2
-/// @param y2
+/// @description	Given two points on the board, return their manhattan distance.
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-var x1 = argument0;
-var y1 = argument1;
-var x2 = argument2;
-var y2 = argument3;
+/// @param u1
+/// @param v1
+/// @param u2
+/// @param v2
 
-var dx = abs(x1 - x2);
-var dy = abs(y1 - y2);
+var u1 = argument0;
+var v1 = argument1;
+var u2 = argument2;
+var v2 = argument3;
 
-return (dx + dy);
+var du = abs(u1 - u2);
+var dv = abs(v1 - v2);
+
+return (du + dv);

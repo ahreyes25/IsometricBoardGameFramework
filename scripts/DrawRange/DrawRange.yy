@@ -1,8 +1,8 @@
 {
-    "id": "f5256034-9907-40ee-996a-07894d2d2c4f",
+    "id": "0f1d064c-dcf0-4836-b98d-a91b399386ef",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "NextPlayer",
+    "name": "DrawRange",
     "IsCompatibility": false,
     "IsDnD": false
 }

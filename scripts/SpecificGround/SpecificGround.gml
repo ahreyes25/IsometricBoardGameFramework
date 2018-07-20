@@ -1,9 +1,13 @@
-/// @param i
-/// @param j
-/// @groundPiece
+/// @description Check the index at the given uv position on the board for a specific ground piece.
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-var i = argument0;
-var j = argument1;
+/// @param u
+/// @param v
+/// @param ground
+
+var u = argument0;
+var v = argument1;
 var p = argument2;
 
-return (ds_grid_get(oGameController.board, i, j) mod 10 == p);
+// Return boolean
+return (ds_grid_get(oGameController.board, u, v) mod 10 == p);

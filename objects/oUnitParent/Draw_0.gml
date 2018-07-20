@@ -1,37 +1,94 @@
-if (oGameController.debugging) {
-	draw_sprite_ext(sprite_index, 0, x, y, image_xscale, image_yscale, 0, c_white, 0.25);
-	draw_text_transformed_color(x, y - 16, state, 1, 1, 0, c_yellow, c_yellow, c_yellow, c_yellow, 1);
-	
-	// Draw Vectors
-	if (oGameController.turnController.currentPlayerTurn.id == id) {
-		if (!movedToX) {
-			var targetCoords = GridToWorld(moveToTargetX, startBoardY);
-			var dirVector	 = point_direction(x, y, targetCoords[0], targetCoords[1]);
-			var lenVector	 = point_distance(x, y, targetCoords[0], targetCoords[1]);
-			var moveVector	 = [lengthdir_x(lenVector, dirVector), lengthdir_y(lenVector, dirVector)];
-			var normVector	 = [moveVector[0] / lenVector, moveVector[1] / lenVector];
-		
-			draw_line_color(x, y, x + moveVector[0], y, c_red, c_red);
-			draw_line_color(x, y, x, y + moveVector[1], c_blue, c_blue);
-			draw_line_color(x, y, targetCoords[0], targetCoords[1], c_yellow, c_yellow);
-		}	
-		// Move To Y Position
-		else if (!movedToY) {
-			var targetCoords = GridToWorld(moveToTargetX, moveToTargetY);
-			var dirVector	 = point_direction(x, y, targetCoords[0], targetCoords[1]);
-			var lenVector	 = point_distance(x, y, targetCoords[0], targetCoords[1]);
-			var moveVector	 = [lengthdir_x(lenVector, dirVector), lengthdir_y(lenVector, dirVector)];
-			var normVector	 = [moveVector[0] / lenVector, moveVector[1] / lenVector];
-		
-			draw_line_color(x, y, x + moveVector[0], y, c_red, c_red);
-			draw_line_color(x, y, x, y + moveVector[1], c_blue, c_blue);
-			draw_line_color(x, y, targetCoords[0], targetCoords[1], c_yellow, c_yellow);
-		}
-	}
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+// Set sprites dependig on which team the player is on
+if (team == unit.black) {
+	var sprIdle = sPlayer1Idle;
+	var sprRun  = sPlayer1Run;
 }
+else if (team == unit.white) {
+	var sprIdle = sPlayer2Idle;
+	var sprRun  = sPlayer2Run;
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+// If debugging, draw the player semi transparent
+
+if (oGameController.debugging) {
+	DrawDebugInfo();
+	DebugGridValues();
+	draw_sprite_ext(sprIdle, image_index, x, y, image_xscale, image_yscale, 0, c_white, 0.5);
+}
+// Not debugging
 else {
-	if (active)
-		draw_self();
-	else
-		draw_sprite_ext(sprite_index, 0, x, y, image_xscale, image_yscale, 0, c_gray, 1);
+	switch (state) {
+		#region // Waiting State
+		case unitState.waiting:
+			if (!hasMoved || !hasAttacked) {
+				draw_sprite_ext(sprIdle, image_index, x, y, image_xscale, image_yscale, 0, c_white, 1);
+			}
+			else {
+				draw_sprite_ext(sprIdle, 0, x, y, image_xscale, image_yscale, 0, c_gray, 1);
+			}
+		break;
+		#endregion
+		
+		#region // Idle State
+		case unitState.idle:
+			draw_text_transformed(x + 10, y - 20, "\"J\" To Move", 0.75, 0.75, 0);
+			draw_text_transformed(x + 10, y - 10, "\"K\" To Attack", 0.75, 0.75, 0);
+			draw_sprite_ext(sprIdle, image_index, x, y, image_xscale, image_yscale, 0, c_white, 1);
+		break;
+		#endregion
+		
+		#region // Select Movement State
+		case unitState.selectingMovement:
+			draw_text_transformed(x + 10, y - 20, "\"K\" To Go Back", 0.75, 0.75, 0);
+			draw_sprite_ext(sprIdle, image_index, x, y, image_xscale, image_yscale, 0, c_white, 1);
+		break;
+		#endregion
+		
+		#region // Moving To Target State
+		case unitState.movingToTarget:
+			if (x > xprevious) {
+				image_xscale = 1;	
+			}
+			else {
+				image_xscale = -1;
+			}
+			draw_sprite_ext(sprRun, image_index, x, y, image_xscale, image_yscale, 0, c_white, 1);
+		break;
+		#endregion
+		
+		#region // Deciding State
+		case unitState.decide:
+			draw_text_transformed(x + 10, y - 20, "\"J\" To Attack", 0.75, 0.75, 0);
+			draw_text_transformed(x + 10, y - 10, "\"K\" To Wait", 0.75, 0.75, 0);
+			draw_sprite_ext(sprIdle, image_index, x, y, image_xscale, image_yscale, 0, c_white, 1);
+		break;
+		#endregion
+		
+		#region // Selection Attack Target State
+		case unitState.selectingAttackTarget:
+			draw_text_transformed(x + 10, y - 20, "\"K\" To Go Back", 0.75, 0.75, 0);
+			draw_sprite_ext(sprIdle, image_index, x, y, image_xscale, image_yscale, 0, c_white, 1);
+		break
+		#endregion
+		
+		#region // Melee Combat State
+		case unitState.meleeCombat:
+			draw_sprite_ext(sprIdle, image_index, x, y, image_xscale, image_yscale, 0, c_white, 1);
+		break;
+		#endregion
+		
+		#region // Ranged Combat State
+		case unitState.rangedCombat:
+			draw_sprite_ext(sprIdle, image_index, x, y, image_xscale, image_yscale, 0, c_white, 1);
+		break;
+		#endregion
+		
+		#region // End Turn State
+		case unitState.endTurn:
+			draw_sprite_ext(sprIdle, image_index, x, y, image_xscale, image_yscale, 0, c_white, 1);
+		break;
+		#endregion
+	}
 }

@@ -12,7 +12,9 @@
         "2413b1d3-5c15-4e58-b566-bb6a348e5f8e",
         "117095a9-db35-4b6d-a7ac-b6dc1c3b5527",
         "c2da0165-0195-49b6-98cd-c1a0d1f9454e",
-        "1c4b53a6-57e4-437c-bf57-27658f1cd58d"
+        "4c289685-6d85-4a06-a1f5-a6790105207c",
+        "fc9b97d3-4656-45bc-9b17-9d1de86df62d",
+        "434fb5c8-4a1e-46ed-93c7-209bd7e9e7a1"
     ],
     "filterType": "GMScript",
     "folderName": "BoardUtil",

@@ -2,178 +2,214 @@ depth = -y;
 
 // Get current board position
 var unitGridCoords = WorldToGrid(x, y);
-currentBoardX  = unitGridCoords[0];
-currentBoardY  = unitGridCoords[1];
+currentBoardU  = unitGridCoords[0];
+currentBoardV  = unitGridCoords[1];
 
-// Currently player turn
+// Player Turn
 if (oGameController.turnController.currentPlayerTurn.id == id) {
-	active = true;
-	
-	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-	// Player State Machine
-	
-	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-	// Idle State
-	if (state == unitState.idle) {
-		// Draw Options to show move or attack
-		if (keyboard_check_pressed(vk_enter)) {
-			state = unitState.selectingMovement;
-		}
-		UpdateBoardPlayerStates();
-	}
-	
-	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-	// Selecting Movement State
-	else if (state == unitState.selectingMovement) {
-		Input();
-		showingMovementRange = true;
-		showingAttackRange   = false;
+	switch (state) {
+		#region // Idle State
+		case unitState.idle:
+			hasMoved			 = false;
+			hasAttacked			 = false;
+			showingMovementRange = false;
+			showingAttackRange   = false;
 		
-		Input();
-		// Click on Space To Move To It
-		if (mouseLeftPressed) {
-			var mouseGridCoords = WorldToGrid(mouse_x, mouse_y);
+			if (keyboard_check_pressed(ord("J"))) {
+				state = unitState.selectingMovement;	
+			}
+		
+			if (keyboard_check_pressed(ord("K"))) {
+				state = unitState.selectingAttackTarget;	
+			}
+		break;
+		#endregion
+	
+		#region // Selecting Movement State
+		case unitState.selectingMovement:
+			showingMovementRange = true;
+			showingAttackRange   = false;
+		
+			// Click on Space To Move To It
+			if (mouse_check_button_pressed(mb_left)) {
+				var mouseGridCoords = WorldToGrid(mouse_x, mouse_y);
 			
-			// Check if space clicked is in range
-			if (BoardDistance(mouseGridCoords[0], mouseGridCoords[1], currentBoardX, currentBoardY) <= movementRange && 
-				!IsTerrain(mouseGridCoords[0], mouseGridCoords[1]) && !IsUnit(mouseGridCoords[0], mouseGridCoords[1]) && 
-				!SpecificGround(mouseGridCoords[0], mouseGridCoords[1], ground.water)) {
-					moveToTargetX = mouseGridCoords[0];
-					moveToTargetY = mouseGridCoords[1];
-					startBoardX = currentBoardX;
-					startBoardY = currentBoardY;
-					state = unitState.movingToTarget;	
+				// Check if space clicked is in range
+				if (BoardDistance(mouseGridCoords[0], mouseGridCoords[1], currentBoardU, currentBoardV) <= movementRange) {
+					// Make sure a unit isnt already occupying that space
+					if (!IsUnit(mouseGridCoords[0], mouseGridCoords[1])) {
+						moveToTargetU	= mouseGridCoords[0];
+						moveToTargetV	= mouseGridCoords[1];
+						startBoardU		= currentBoardU;
+						startBoardV		= currentBoardV;
+						state			= unitState.movingToTarget;	
+					}
+				}
 			}
-		}
-		UpdateBoardPlayerStates();
-	}
+		
+			// Go Back To Previous State
+			if (keyboard_check_pressed(ord("K"))) {
+				state = unitState.idle;
+			}	
+		
+			// Update Player State Info On Board
+			UpdateBoardPlayerStates();
+		break;
+		#endregion
 	
-	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-	// Moving To Target State
-	else if (state == unitState.movingToTarget) {
-		showingMovementRange = false;
-		showingAttackRange   = false;
+		#region // Moving To Target State
+		case unitState.movingToTarget:
+			showingMovementRange = false;
+			showingAttackRange   = false;
 		
-		// Move To X Position
-		if (!movedToX) {
-			var targetCoords = GridToWorld(moveToTargetX, startBoardY);
-			var dirVector	 = point_direction(x, y, targetCoords[0], targetCoords[1]);
-			var lenVector	 = point_distance(x, y, targetCoords[0], targetCoords[1]);
-			var moveVector	 = [lengthdir_x(lenVector, dirVector), lengthdir_y(lenVector, dirVector)];
-			var normVector	 = [moveVector[0] / lenVector, moveVector[1] / lenVector];
 		
-			if (x + movementSpeed < targetCoords[0] || x - movementSpeed > targetCoords[0]) {
-				x += normVector[0] * movementSpeed;
-			}
-			else {
-				x = targetCoords[0];	
-			}
+			// If unit hasnt moved to the u position yet
+			if (!movedToU) {
+				var targetCoords = GridToWorld(moveToTargetU, startBoardV);
+				var dirVector	 = point_direction(x, y, targetCoords[0], targetCoords[1]);
+				var lenVector	 = point_distance(x, y, targetCoords[0], targetCoords[1]);
+				var moveVector	 = [lengthdir_x(lenVector, dirVector), lengthdir_y(lenVector, dirVector)];
+				var normVector	 = [moveVector[0] / lenVector, moveVector[1] / lenVector];
+		
+				// Move x by the x component of the normalized movement vector
+				if (x + movementSpeed < targetCoords[0] || x - movementSpeed > targetCoords[0]) {
+					x += normVector[0] * movementSpeed;
+				}
+				// Snap to position
+				else {
+					x = targetCoords[0];	
+				}
 			
-			if (y + movementSpeed < targetCoords[1] || y - movementSpeed > targetCoords[1]) {
-				y += normVector[1] * movementSpeed;
-			}
-			else {
-				y = targetCoords[1];	
+				// Move y by the y component of the normalized movement vector
+				if (y + movementSpeed < targetCoords[1] || y - movementSpeed > targetCoords[1]) {
+					y += normVector[1] * movementSpeed;
+				}
+				// Snap to position
+				else {
+					y = targetCoords[1];	
+				}
+		
+				// If we have reached the u position of the target point, now move in the v direction
+				if (x == targetCoords[0] && y == targetCoords[1]) {
+					movedToU = true;
+				}
 			}
 		
-			if (x == targetCoords[0] && y == targetCoords[1]) {
-				movedToX = true;
-			}
-		}
+			// if unit hasnt moved to the v position yet
+			else if (!movedToV) {
+				var targetCoords = GridToWorld(moveToTargetU, moveToTargetV);
+				var dirVector	 = point_direction(x, y, targetCoords[0], targetCoords[1]);
+				var lenVector	 = point_distance(x, y, targetCoords[0], targetCoords[1]);
+				var moveVector	 = [lengthdir_x(lenVector, dirVector), lengthdir_y(lenVector, dirVector)];
+				var normVector	 = [moveVector[0] / lenVector, moveVector[1] / lenVector];
 		
-		// Move To Y Position
-		else if (!movedToY) {
-			var targetCoords = GridToWorld(moveToTargetX, moveToTargetY);
-			var dirVector	 = point_direction(x, y, targetCoords[0], targetCoords[1]);
-			var lenVector	 = point_distance(x, y, targetCoords[0], targetCoords[1]);
-			var moveVector	 = [lengthdir_x(lenVector, dirVector), lengthdir_y(lenVector, dirVector)];
-			var normVector	 = [moveVector[0] / lenVector, moveVector[1] / lenVector];
-		
-			if (x + movementSpeed < targetCoords[0] || x - movementSpeed > targetCoords[0]) {
-				x += normVector[0] * movementSpeed;
-			}
-			else {
-				x = targetCoords[0];	
-			}
+				// Move x by the x component of the normalized movement vector
+				if (x + movementSpeed < targetCoords[0] || x - movementSpeed > targetCoords[0]) {
+					x += normVector[0] * movementSpeed;
+				}
+				// Snap to position
+				else {
+					x = targetCoords[0];	
+				}
 			
-			if (y + movementSpeed < targetCoords[1] || y - movementSpeed > targetCoords[1]) {
-				y += normVector[1] * movementSpeed;
-			}
-			else {
-				y = targetCoords[1];	
+				// Move y by the y component of the normalized movement vector
+				if (y + movementSpeed < targetCoords[1] || y - movementSpeed > targetCoords[1]) {
+					y += normVector[1] * movementSpeed;
+				}
+				// Snap to position
+				else {
+					y = targetCoords[1];	
+				}
+		
+				// If we have reached the v position of the target point,
+				if (x == targetCoords[0] && y == targetCoords[1]) {
+					movedToV = true;
+				}
 			}
 		
-			if (x == targetCoords[0] && y == targetCoords[1]) {
-				movedToY = true;
+			// Finished moving
+			if (movedToU && movedToV) {
+				movedToU = false;
+				movedToV = false;
+				hasMoved = true;
+			
+				// update grid values
+				UpdateBoardPlayerPosition();
+			
+				// Continue to next state
+				state = unitState.decide;
 			}
-		}
+		break;
+		#endregion
+	
+		#region // Deciding To Attack or End State
+		case unitState.decide:
+			showingMovementRange = false;
+			showingAttackRange   = false;
 		
-		// Finished moving
-		if (movedToX && movedToY) {
-			// update variables
-			movedToX = false;
-			movedToY = false;
+			// Move into selecting attack target state
+			if (keyboard_check_pressed(ord("J"))) {
+				state = unitState.selectingAttackTarget;	
+			}
+		
+			// Move into waiting state
+			if (keyboard_check_pressed(ord("K"))) {
+				hasAttacked = true;
+				state = unitState.waiting;	
+			}
+		
+			// Update Player State Info On Board
+			UpdateBoardPlayerStates();
+		break;
+		#endregion
+	
+		#region // Select Attack Target State
+		case unitState.selectingAttackTarget:
+			showingMovementRange = false;
+			showingAttackRange   = true;
+		
+			// Go Back To Previous State
+			if (keyboard_check_pressed(ord("K"))) {
+				state = unitState.decide;
+			}
+		
+			// Update Player State Info On Board
+			UpdateBoardPlayerStates();
+		break;
+		#endregion
+	
+		#region // Melee Combat State
+		case unitState.meleeCombat:
+			showingMovementRange = false;
+			showingAttackRange   = false;
 			
-			// update grid values
-			UpdateBoardPlayerPosition();
+			// Update Player State Info On Board
+			UpdateBoardPlayerStates();
+		break;
+		#endregion
+	
+		#region // Ranged Combat State
+		case unitState.rangedCombat:
+			showingMovementRange = false;
+			showingAttackRange   = false;
 			
-			// Continue to next state
-			state = unitState.selectingAttackTarget;
-		}
-	}
-	
-	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-	// Selecting Attack Target State
-	else if (state == unitState.selectingAttackTarget) {
-		showingMovementRange = false;
-		showingAttackRange   = true;
-		UpdateBoardPlayerStates();
-	}
-	
-	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-	// Melee Combat State
-	else if (state == unitState.meleeCombat) {
-		showingMovementRange = false;
-		showingAttackRange   = false;
-		UpdateBoardPlayerStates();
-	}
-	
-	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-	// Ranged Combat State
-	else if (state == unitState.rangedCombat) {
-		showingMovementRange = false;
-		showingAttackRange   = false;
-		UpdateBoardPlayerStates();
-	}
-	
-	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-	// Show Attack Range State
-	else if (state == unitState.showAttackRange) {
-		showingMovementRange = false;
-		showingAttackRange   = true;
-		active				 = false;
-		UpdateBoardPlayerStates();
-	}
-	
-	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-	// Show Movement Range State
-	else if (state == unitState.showMovementRange) {
-		showingMovementRange = true;
-		showingAttackRange   = false;
-		active				 = false;
-		UpdateBoardPlayerStates();
+			// Update Player State Info On Board
+			UpdateBoardPlayerStates();
+		break;
+		#endregion
 	}
 }	
-// Not player turn
+// Not Player Turn
 else {
-	active = false;	
-	state  = unitState.waiting;
+	state = unitState.waiting;
 	
-	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-	// Waiting State
+	#region // Waiting State
 	if (state == unitState.waiting) {
 		showingAttackRange   = false;
 		showingMovementRange = false;
+		
+		// Update Player State Info On Board
 		UpdateBoardPlayerStates();
 	}
+	#endregion
 }

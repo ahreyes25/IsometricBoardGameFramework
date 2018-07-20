@@ -1,9 +1,13 @@
-/// @param i
-/// @param j
-/// @decoration
+/// @description Check the index at the given uv position on the board for a specific unit.
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-var i = argument0;
-var j = argument1;
-var u = argument2;
+/// @param u
+/// @param v
+/// @param decoration
 
-return (floor(ds_grid_get(oGameController.board, i, j) / 100) mod 10 == u / 100)
+var u	= argument0;
+var v	= argument1;
+var uni	= argument2;
+
+// Return boolean
+return (floor(ds_grid_get(oGameController.board, u, v) / 100) mod 10 == uni / 100)

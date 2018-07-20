@@ -22,6 +22,3 @@ previousTeamTurn		= noone;
 currentTeamIndex		= 0;
 
 currentPlayerTurn		= noone;
-nextPlayerTurn			= noone;
-previousPlayerTurn		= noone;
-currentPlayerIndex		= 0;

@@ -1,1 +1,1 @@
-NextPlayer();
+NextTeam();

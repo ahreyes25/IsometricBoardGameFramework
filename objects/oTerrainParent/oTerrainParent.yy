@@ -2,7 +2,7 @@
     "id": "62a92797-7bdc-43be-abfc-b5eaa9298fdb",
     "modelName": "GMObject",
     "mvc": "1.0",
-    "name": "oDecorationParent",
+    "name": "oTerrainParent",
     "eventList": [
         {
             "id": "6cc47461-dc7b-4059-a604-1309fc4a1449",

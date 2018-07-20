@@ -14,7 +14,14 @@ Units:
 	100 = team1
 	200 = team2
 	
+States:
+	1000 = waiting
+	2000 = idle
+	3000 = ...
+	etc
+	
 Final Examples:
-	Space with Dirt and Building			= 011
-	Space with water and player on team 1	= 102
-	Space with grass and mountain			= 030
+	Space with Dirt and Building and no unit				= 0011
+	Space with water and unit on team 1 that is waiting		= 1102
+	Space with water and unit on team 1 that is idle		= 2102
+	Space with grass and mountain and no unit				= 030

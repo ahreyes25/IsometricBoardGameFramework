@@ -1,1 +1,2 @@
+// Toggle debugging
 debugging = !debugging;
