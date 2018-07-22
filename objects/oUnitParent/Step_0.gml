@@ -156,7 +156,7 @@ if (oGameController.turnController.currentPlayerTurn.id == id) {
 			if (keyboard_check_pressed(ord("K"))) {
 				hasAttacked = true;
 				hasMoved    = true;
-				state = unitState.waiting;	
+				state		= unitState.waiting;	
 			}
 		
 			// Update Player State Info On Board
@@ -173,26 +173,40 @@ if (oGameController.turnController.currentPlayerTurn.id == id) {
 			if (keyboard_check_pressed(ord("K"))) {
 				state = unitState.decide;
 			}
+			
+			// Click on attack target
+			if (mouse_check_button_pressed(mb_left)) {
+				var gridCoords = WorldToGrid(mouse_x, mouse_y);
+				
+				// check it is unit
+				if (IsUnit(gridCoords[0], gridCoords[1])) {
+					
+					// check unit is in range
+					if (BoardDistance(currentBoardU, currentBoardV, gridCoords[0], gridCoords[1]) <= attackRange) {
+						attackTarget = GetUnitAtPosition(gridCoords[0], gridCoords[1]);
+					
+						if (attackTarget != noone) {
+							state = unitState.combat;
+						}
+					}
+				}
+			}
 		
 			// Update Player State Info On Board
 			UpdateBoardPlayerStates();
 		break;
 		#endregion
 	
-		#region // Melee Combat State
-		case unitState.meleeCombat:
+		#region // Combat State
+		case unitState.combat:
 			showMovementRange = false;
 			showAttackRange   = false;
 			
-			// Update Player State Info On Board
-			UpdateBoardPlayerStates();
-		break;
-		#endregion
-	
-		#region // Ranged Combat State
-		case unitState.rangedCombat:
-			showMovementRange = false;
-			showAttackRange   = false;
+			attackTarget.currentLife -= attackDamage;
+			hasAttacked		= true;
+			hasMoved		= true;
+			attackTarget	= noone;
+			state			= unitState.waiting;
 			
 			// Update Player State Info On Board
 			UpdateBoardPlayerStates();
@@ -210,4 +224,13 @@ else {
 		UpdateBoardPlayerStates();
 	}
 	#endregion
+}
+
+// Destroy
+if (currentLife <= 0) {
+	with (rangeVisualizer) {
+		instance_destroy();	
+	}
+	ds_list_delete(team, ds_list_find_index(team, id));
+	instance_destroy();
 }

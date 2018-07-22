@@ -1,10 +1,14 @@
-maxLife			= 100;
+maxLife			= 10;
 currentLife		= maxLife;
 movementRange	= 3;
 attackRange		= 2;
 movementSpeed	= 3;
+attackDamage	= 5;
+
 team			= noone;
 unitType		= noone;
+attackTarget	= noone;
+state			= unitState.waiting;
 
 #region // State Enum
 enum unitState {
@@ -14,9 +18,8 @@ enum unitState {
 	movingToTarget			= 4000,		// moving to target
 	decide					= 5000,		// decide to attack or sit still
 	selectingAttackTarget	= 6000,		// selecting who to attack
-	meleeCombat				= 7000,		// attacking up close
-	rangedCombat			= 8000,		// attacking from range
-	endTurn					= 9000,	// what to do before moving onto next team
+	combat					= 7000,		// combat
+	endTurn					= 8000,		// what to do before moving onto next team
 }
 #endregion
 
@@ -39,9 +42,6 @@ moveToTargetU	= noone;
 moveToTargetV	= noone;
 movedToU		= false;
 movedToV		= false;
-
-state			= unitState.waiting;
-
 hasMoved		= false;
 hasAttacked		= false;
 

@@ -29,14 +29,8 @@ switch (state) {
 	break;
 	#endregion
 	
-	#region // Melee Combat State
-	case unitState.meleeCombat:
-		draw_text_transformed(10, 460, "Attacking", 1, 1, 0);
-	break;
-	#endregion
-	
-	#region // Ranged Combat State
-	case unitState.rangedCombat:
+	#region // Combat State
+	case unitState.combat:
 		draw_text_transformed(10, 460, "Attacking", 1, 1, 0);
 	break;
 	#endregion

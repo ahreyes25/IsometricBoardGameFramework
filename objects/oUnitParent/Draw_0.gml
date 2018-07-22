@@ -73,14 +73,8 @@ else {
 		break
 		#endregion
 		
-		#region // Melee Combat State
-		case unitState.meleeCombat:
-			draw_sprite_ext(sprIdle, image_index, x, y, image_xscale, image_yscale, 0, c_white, 1);
-		break;
-		#endregion
-		
-		#region // Ranged Combat State
-		case unitState.rangedCombat:
+		#region // Combat State
+		case unitState.combat:
 			draw_sprite_ext(sprIdle, image_index, x, y, image_xscale, image_yscale, 0, c_white, 1);
 		break;
 		#endregion
@@ -92,3 +86,5 @@ else {
 		#endregion
 	}
 }
+
+draw_text_transformed(x - 10, y - 40, currentLife, 1, 1, 0);
