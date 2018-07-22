@@ -41,13 +41,14 @@ for (var i = 0; i < 2; i++) {
 	var u = instance_create_layer(worldCoords[0], worldCoords[1], "World", oUnitParent);
 	u.sprite_index = sPlayer1Idle;
 	u.state = unitState.waiting;
-	u.team = unit.white;
+	u.team = oGameController.turnController.whiteTeam;
+	u.unitType = unit.white;
 	
 	// Add unit to team
 	ds_list_add(turnController.whiteTeam, u);
 	
 	// Add unit value to board info
-	ds_grid_set(board, gi, gj, ds_grid_get(board, gi, gj) + u.team);
+	ds_grid_set(board, gi, gj, ds_grid_get(board, gi, gj) + u.unitType);
 	ds_grid_set(board, gi, gj, ds_grid_get(board, gi, gj) + u.state);
 }
 
@@ -70,13 +71,14 @@ for (var i = 0; i < 2; i++) {
 	var u = instance_create_layer(worldCoords[0], worldCoords[1], "World", oUnitParent);
 	u.sprite_index = sPlayer2Idle;
 	u.state = unitState.waiting;
-	u.team = unit.black;
+	u.team  = oGameController.turnController.blackTeam;
+	u.unitType = unit.black;
 	
 	// Add unit to team
 	ds_list_add(turnController.blackTeam, u);
 	
 	// Add unit value to board info
-	ds_grid_set(board, gi, gj, ds_grid_get(board, gi, gj) + u.team);
+	ds_grid_set(board, gi, gj, ds_grid_get(board, gi, gj) + u.unitType);
 	ds_grid_set(board, gi, gj, ds_grid_get(board, gi, gj) + u.state);
 }
 

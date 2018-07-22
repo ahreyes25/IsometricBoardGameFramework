@@ -58,6 +58,25 @@
             }
         },
         {
+            "Key": "0ad000fb-ab66-4304-9c58-6c2ca9344a31",
+            "Value": {
+                "id": "68f3c5ee-de29-446e-a592-3c633a1cc30b",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "scripts\/InspectUnit\/InspectUnit.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "0adecaac-99d9-4f66-b773-daf2dcc95653",
             "Value": {
                 "id": "03e9c935-6ed3-4cfd-878b-527c96dcb4fd",
@@ -248,6 +267,25 @@
             }
         },
         {
+            "Key": "2536620a-01a3-47cc-9383-8c63c21586a2",
+            "Value": {
+                "id": "24f04efd-a2bc-42e3-8825-f057676e43b8",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "scripts\/HideAllOtherRanges\/HideAllOtherRanges.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "2607eee9-2a78-4271-a5c6-f72eff037def",
             "Value": {
                 "id": "4dc72322-ac78-421d-b643-d2745df55f86",
@@ -378,6 +416,25 @@
                 ],
                 "resourcePath": "views\/33e5ca7c-0fa6-4522-8eb2-7f769fe0c9f2.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "38c76421-479e-430c-826b-0b2208ebcfe7",
+            "Value": {
+                "id": "1c828a06-d770-42fd-9891-b66892d60f24",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "scripts\/GetUnitAtPosition\/GetUnitAtPosition.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -587,6 +644,25 @@
                 ],
                 "resourcePath": "objects\/oUnitParent\/oUnitParent.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "5e4432ca-e8b4-4e2f-9f31-468bc761e7e1",
+            "Value": {
+                "id": "db721943-781a-4639-b15d-f2433c5929ca",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "scripts\/SelectUnit\/SelectUnit.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -1538,6 +1614,25 @@
                 "resourcePath": "objects\/oGameController\/oGameController.yy",
                 "resourceType": "GMObject"
             }
+        },
+        {
+            "Key": "ff419add-e79b-46f0-9990-36dc008e7ebd",
+            "Value": {
+                "id": "75abeb43-fcbd-4675-a7e3-bcd9e352bbea",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "scripts\/UnitOnCurrentTeam\/UnitOnCurrentTeam.yy",
+                "resourceType": "GMScript"
+            }
         }
     ],
     "script_order": [
@@ -1548,6 +1643,9 @@
         "1898b10e-da76-4852-a0e2-f4aa9bc0b9a1",
         "ecb4da95-8836-4b95-885e-6bb3139b075a",
         "eaa238fa-1abf-45df-aa80-46568c44d650",
+        "5e4432ca-e8b4-4e2f-9f31-468bc761e7e1",
+        "0ad000fb-ab66-4304-9c58-6c2ca9344a31",
+        "2536620a-01a3-47cc-9383-8c63c21586a2",
         "2607eee9-2a78-4271-a5c6-f72eff037def",
         "a6812c80-251b-403d-816c-5474c3875392",
         "5431fa44-0144-453a-b24f-72466d45db0b",
@@ -1559,6 +1657,8 @@
         "4c289685-6d85-4a06-a1f5-a6790105207c",
         "fc9b97d3-4656-45bc-9b17-9d1de86df62d",
         "434fb5c8-4a1e-46ed-93c7-209bd7e9e7a1",
+        "38c76421-479e-430c-826b-0b2208ebcfe7",
+        "ff419add-e79b-46f0-9990-36dc008e7ebd",
         "54d6997b-1e31-419b-ae74-cb13d9800598",
         "0adecaac-99d9-4f66-b773-daf2dcc95653",
         "f2d95964-ab64-416d-a056-42cdd466ea3e",

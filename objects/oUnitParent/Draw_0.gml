@@ -1,10 +1,10 @@
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 // Set sprites dependig on which team the player is on
-if (team == unit.black) {
+if (team == oGameController.turnController.blackTeam) {
 	var sprIdle = sPlayer1Idle;
 	var sprRun  = sPlayer1Run;
 }
-else if (team == unit.white) {
+else if (team == oGameController.turnController.whiteTeam) {
 	var sprIdle = sPlayer2Idle;
 	var sprRun  = sPlayer2Run;
 }

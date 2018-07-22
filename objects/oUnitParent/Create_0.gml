@@ -4,6 +4,7 @@ movementRange	= 3;
 attackRange		= 2;
 movementSpeed	= 3;
 team			= noone;
+unitType		= noone;
 
 #region // State Enum
 enum unitState {
@@ -19,8 +20,8 @@ enum unitState {
 }
 #endregion
 
-showingMovementRange = false;
-showingAttackRange   = false;
+showMovementRange = false;
+showAttackRange   = false;
 
 // range visualizer is a separate object because we want the range to be draw at 
 // a speciic depth, and if it is attached to our player then the depth value is 

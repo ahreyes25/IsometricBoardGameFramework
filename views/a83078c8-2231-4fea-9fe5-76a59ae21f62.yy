@@ -11,6 +11,9 @@
         "1898b10e-da76-4852-a0e2-f4aa9bc0b9a1",
         "ecb4da95-8836-4b95-885e-6bb3139b075a",
         "eaa238fa-1abf-45df-aa80-46568c44d650",
+        "5e4432ca-e8b4-4e2f-9f31-468bc761e7e1",
+        "0ad000fb-ab66-4304-9c58-6c2ca9344a31",
+        "2536620a-01a3-47cc-9383-8c63c21586a2",
         "96b5960e-c3ac-42e5-8319-02b1a557f740"
     ],
     "filterType": "GMScript",

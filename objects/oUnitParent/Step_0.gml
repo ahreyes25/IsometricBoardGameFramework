@@ -12,8 +12,8 @@ if (oGameController.turnController.currentPlayerTurn.id == id) {
 		case unitState.idle:
 			hasMoved			 = false;
 			hasAttacked			 = false;
-			showingMovementRange = false;
-			showingAttackRange   = false;
+			showMovementRange = false;
+			showAttackRange   = false;
 		
 			if (keyboard_check_pressed(ord("J"))) {
 				state = unitState.selectingMovement;	
@@ -27,8 +27,8 @@ if (oGameController.turnController.currentPlayerTurn.id == id) {
 	
 		#region // Selecting Movement State
 		case unitState.selectingMovement:
-			showingMovementRange = true;
-			showingAttackRange   = false;
+			showMovementRange = true;
+			showAttackRange   = false;
 		
 			// Click on Space To Move To It
 			if (mouse_check_button_pressed(mb_left)) {
@@ -59,8 +59,8 @@ if (oGameController.turnController.currentPlayerTurn.id == id) {
 	
 		#region // Moving To Target State
 		case unitState.movingToTarget:
-			showingMovementRange = false;
-			showingAttackRange   = false;
+			showMovementRange = false;
+			showAttackRange   = false;
 		
 		
 			// If unit hasnt moved to the u position yet
@@ -144,8 +144,8 @@ if (oGameController.turnController.currentPlayerTurn.id == id) {
 	
 		#region // Deciding To Attack or End State
 		case unitState.decide:
-			showingMovementRange = false;
-			showingAttackRange   = false;
+			showMovementRange = false;
+			showAttackRange   = false;
 		
 			// Move into selecting attack target state
 			if (keyboard_check_pressed(ord("J"))) {
@@ -155,6 +155,7 @@ if (oGameController.turnController.currentPlayerTurn.id == id) {
 			// Move into waiting state
 			if (keyboard_check_pressed(ord("K"))) {
 				hasAttacked = true;
+				hasMoved    = true;
 				state = unitState.waiting;	
 			}
 		
@@ -165,8 +166,8 @@ if (oGameController.turnController.currentPlayerTurn.id == id) {
 	
 		#region // Select Attack Target State
 		case unitState.selectingAttackTarget:
-			showingMovementRange = false;
-			showingAttackRange   = true;
+			showMovementRange = false;
+			showAttackRange   = true;
 		
 			// Go Back To Previous State
 			if (keyboard_check_pressed(ord("K"))) {
@@ -180,8 +181,8 @@ if (oGameController.turnController.currentPlayerTurn.id == id) {
 	
 		#region // Melee Combat State
 		case unitState.meleeCombat:
-			showingMovementRange = false;
-			showingAttackRange   = false;
+			showMovementRange = false;
+			showAttackRange   = false;
 			
 			// Update Player State Info On Board
 			UpdateBoardPlayerStates();
@@ -190,8 +191,8 @@ if (oGameController.turnController.currentPlayerTurn.id == id) {
 	
 		#region // Ranged Combat State
 		case unitState.rangedCombat:
-			showingMovementRange = false;
-			showingAttackRange   = false;
+			showMovementRange = false;
+			showAttackRange   = false;
 			
 			// Update Player State Info On Board
 			UpdateBoardPlayerStates();
@@ -205,9 +206,6 @@ else {
 	
 	#region // Waiting State
 	if (state == unitState.waiting) {
-		showingAttackRange   = false;
-		showingMovementRange = false;
-		
 		// Update Player State Info On Board
 		UpdateBoardPlayerStates();
 	}

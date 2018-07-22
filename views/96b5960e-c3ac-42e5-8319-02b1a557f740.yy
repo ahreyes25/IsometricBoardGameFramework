@@ -14,7 +14,9 @@
         "c2da0165-0195-49b6-98cd-c1a0d1f9454e",
         "4c289685-6d85-4a06-a1f5-a6790105207c",
         "fc9b97d3-4656-45bc-9b17-9d1de86df62d",
-        "434fb5c8-4a1e-46ed-93c7-209bd7e9e7a1"
+        "434fb5c8-4a1e-46ed-93c7-209bd7e9e7a1",
+        "38c76421-479e-430c-826b-0b2208ebcfe7",
+        "ff419add-e79b-46f0-9990-36dc008e7ebd"
     ],
     "filterType": "GMScript",
     "folderName": "BoardUtil",

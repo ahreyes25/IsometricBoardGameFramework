@@ -4,8 +4,8 @@
 
 // Update new position by adding player to it
 ds_grid_set(oGameController.board, oGameController.turnController.currentPlayerTurn.moveToTargetU, oGameController.turnController.currentPlayerTurn.moveToTargetV,
-			ds_grid_get(oGameController.board, oGameController.turnController.currentPlayerTurn.moveToTargetU, oGameController.turnController.currentPlayerTurn.moveToTargetV) + oGameController.turnController.currentPlayerTurn.team);
+			ds_grid_get(oGameController.board, oGameController.turnController.currentPlayerTurn.moveToTargetU, oGameController.turnController.currentPlayerTurn.moveToTargetV) + oGameController.turnController.currentPlayerTurn.unitType);
 
 // Update old position by removing player from it
 ds_grid_set(oGameController.board, oGameController.turnController.currentPlayerTurn.startBoardU, oGameController.turnController.currentPlayerTurn.startBoardV,
-			ds_grid_get(oGameController.board, oGameController.turnController.currentPlayerTurn.startBoardU, oGameController.turnController.currentPlayerTurn.startBoardV) - oGameController.turnController.currentPlayerTurn.team);
+			ds_grid_get(oGameController.board, oGameController.turnController.currentPlayerTurn.startBoardU, oGameController.turnController.currentPlayerTurn.startBoardV) - oGameController.turnController.currentPlayerTurn.unitType);
