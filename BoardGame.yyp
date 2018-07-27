@@ -1103,6 +1103,25 @@
             }
         },
         {
+            "Key": "99d76cc3-5150-4c89-adca-368d11c64392",
+            "Value": {
+                "id": "e6445e36-1e25-48a0-88c3-a18481af97ea",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "scripts\/ResetTeamToActive\/ResetTeamToActive.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "a0420c59-6d98-4fa1-ab76-d4029c426bde",
             "Value": {
                 "id": "1a3a451a-fcc1-4122-b1ce-a95b00b24678",
@@ -1646,6 +1665,7 @@
         "5e4432ca-e8b4-4e2f-9f31-468bc761e7e1",
         "0ad000fb-ab66-4304-9c58-6c2ca9344a31",
         "2536620a-01a3-47cc-9383-8c63c21586a2",
+        "99d76cc3-5150-4c89-adca-368d11c64392",
         "2607eee9-2a78-4271-a5c6-f72eff037def",
         "a6812c80-251b-403d-816c-5474c3875392",
         "5431fa44-0144-453a-b24f-72466d45db0b",

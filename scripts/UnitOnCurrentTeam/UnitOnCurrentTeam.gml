@@ -3,4 +3,6 @@
 
 var tUnit = argument0;
 
+show_message(oGameController.turnController.currentTeamTurn);
+
 return (tUnit.team == oGameController.turnController.currentTeamTurn);

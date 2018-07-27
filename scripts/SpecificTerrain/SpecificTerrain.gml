@@ -3,11 +3,11 @@
 
 /// @param u
 /// @param v
-/// @param decoration
+/// @param terrain
 
 var u = argument0;
 var v = argument1;
-var d = argument2;
+var t = argument2;
 
 // Return boolean
-return (floor(ds_grid_get(oGameController.board, u, v) / 10) mod 10 == d / 10)
+return (floor(ds_grid_get(oGameController.board, u, v) / 10) mod 10 == t / 10)

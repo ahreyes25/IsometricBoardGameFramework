@@ -10,4 +10,4 @@ var v	= argument1;
 var uni	= argument2;
 
 // Return boolean
-return (floor(ds_grid_get(oGameController.board, u, v) / 100) mod 10 == uni / 100)
+return (floor(ds_grid_get(oGameController.board, u, v) / 10) mod 10 == uni / 100)

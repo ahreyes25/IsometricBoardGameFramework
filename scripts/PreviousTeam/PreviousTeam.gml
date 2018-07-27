@@ -23,5 +23,7 @@ oGameController.turnController.currentPlayerTurn	= ds_list_find_value(oGameContr
 
 oGameController.turnController.currentPlayerTurn.state  = unitState.idle;
 
+ResetTeamToActive(oGameController.turnController.currentTeamTurn);
+
 // Update all of our other variables before moving on...
 UpdateTeamOrder();

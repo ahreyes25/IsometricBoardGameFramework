@@ -16,12 +16,12 @@ if (mouse_check_button_pressed(mb_left)) {
 				// If Unit is on the team of the current team
 				if (UnitOnCurrentTeam(tUnit)) {
 		
-						// If unit hasnt moved and hasnt attacked
-						if (!tUnit.hasAttacked && !tUnit.hasMoved) {
-							oGameController.turnController.currentPlayerTurn = tUnit;
-							tUnit.state = unitState.idle;
-							UpdateTeamOrder();
-						}
+					// If unit hasnt moved and hasnt attacked
+					if (!tUnit.hasAttacked && !tUnit.hasMoved) {
+						oGameController.turnController.currentPlayerTurn = tUnit;
+						tUnit.state = unitState.idle;
+						UpdateTeamOrder();
+					}
 				}
 			}
 		}

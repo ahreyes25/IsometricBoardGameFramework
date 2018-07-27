@@ -8,6 +8,7 @@ if (oGameController.turnController.currentPlayerTurn.state != unitState.selectin
 	if (mouse_check_button_pressed(mb_left)) {
 	
 		HideAllOtherRanges();
+		
 		var gridCoords = WorldToGrid(mouse_x, mouse_y);
 	
 		// make sure there is a unit at that location

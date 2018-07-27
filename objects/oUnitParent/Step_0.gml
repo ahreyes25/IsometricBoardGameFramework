@@ -10,8 +10,8 @@ if (oGameController.turnController.currentPlayerTurn.id == id) {
 	switch (state) {
 		#region // Idle State
 		case unitState.idle:
-			hasMoved			 = false;
-			hasAttacked			 = false;
+			hasMoved		  = false;
+			hasAttacked		  = false;
 			showMovementRange = false;
 			showAttackRange   = false;
 		

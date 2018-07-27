@@ -12,6 +12,10 @@ for (var u = 0; u < oGameController.boardWidth; u++)  {
 			if (SpecificGround(u, v, ground.dirt)) {
 				draw_sprite(sDirtTile, 0, worldCoords[0], worldCoords[1]);
 			}
+			
+			if (SpecificGround(u, v, ground.grass)) {
+				draw_sprite(sGrassTile, 0, worldCoords[0], worldCoords[1]);	
+			}
 				
 			// If it water, draw water w/specific image_speed
 			image_speed = 0.04;

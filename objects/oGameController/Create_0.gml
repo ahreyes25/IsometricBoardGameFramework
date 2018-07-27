@@ -13,8 +13,8 @@ for (var u = 0; u < boardWidth; u++)  {
 }
 
 // Unit size
-unitWidth  = 64;
-unitHeight = 32;
+tileWidth  = 64; // tile width
+tileHeight = 32; // tile height
 
 debugging  = false;
 

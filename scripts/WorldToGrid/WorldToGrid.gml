@@ -3,8 +3,8 @@
 
 var wx = argument0;
 var wy = argument1;
-var uw = oGameController.unitWidth;
-var uh = oGameController.unitHeight;
+var uw = oGameController.tileWidth;
+var uh = oGameController.tileHeight;
 
 var gx = floor((wy / uh) + (wx / uw) - 8);
 var gy = floor((1 - ((wx / uw) - (wy / uh))) + 1);
