@@ -10,7 +10,7 @@ unitType		= noone;
 attackTarget	= noone;
 state			= unitState.waiting;
 
-#region // State Enum
+#region // UnitStates
 enum unitState {
 	waiting					= 1000,		// waiting for turn
 	idle					= 2000,		// currently highlighted, not doing anything yet
@@ -40,6 +40,7 @@ currentBoardU	= noone;
 currentBoardV	= noone;
 moveToTargetU	= noone;
 moveToTargetV	= noone;
+
 movedToU		= false;
 movedToV		= false;
 hasMoved		= false;

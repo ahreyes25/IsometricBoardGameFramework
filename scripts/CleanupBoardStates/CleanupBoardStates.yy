@@ -1,8 +1,8 @@
 {
-    "id": "e7083532-b4e6-4792-ac72-cbdb5850c5dd",
+    "id": "d8d1c572-d32b-4dab-88f0-36723d7adccd",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "IsTerrain",
+    "name": "CleanupBoardStates",
     "IsCompatibility": false,
     "IsDnD": false
 }

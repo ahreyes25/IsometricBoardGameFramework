@@ -1,26 +1,36 @@
 /// @description	Show An Enemy Unit's Movement Range By Left  Clicking On Them
 //					Show An Enemy Unit's Attack   Range By Right Clicking On Them
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-// If we arent selecting attack target
+var tUnit = noone;
+
+// We do not want to be able to inspect a unit when we are selecting an attack target.
+// Since selecting an attack target requires left clicking on a unit, and inspecting
+// the movement range of a unit requires left clicking on a unit, these two actions
+// can conflict. Instead, we check to make sure that we are not currently in the 
+// selectingAttackTarget state before proceeding. If you change the inputs to different
+// buttons for these two actions then you could remove this conditional check.
 if (oGameController.turnController.currentPlayerTurn.state != unitState.selectingAttackTarget) {
 	
-	// Show Enemy Movement Range
-	if (mouse_check_button_pressed(mb_left)) {
-	
-		HideAllOtherRanges();
+	if (mouse_check_button_pressed(mb_left)) {							// check for mouse left clicked
 		
-		var gridCoords = WorldToGrid(mouse_x, mouse_y);
-	
-		// make sure there is a unit at that location
-		if (IsUnit(gridCoords[0], gridCoords[1])) {
+		HideAllOtherRanges();											// If any other ranges are visible, we want to
+																		// turn them all off so that we dont have a ton
+																		// of ranges being drawn all at once. This essentially
+																		// makes it so that only one range is visible at a
+																		// time. This script can be used in other scenarios
+																		// as well.
 		
-			var tUnit = GetUnitAtPosition(gridCoords[0], gridCoords[1]);
-	
-			// make sure GetUnitAtPosition() didnt return null
-			if (tUnit != noone) {
+		var gridCoords = WorldToGrid(mouse_x, mouse_y);					// get grid u,v position based off of current mouse x,y
+		
+		if (HasUnit(gridCoords[0], gridCoords[1])) {					// make sure there is a unit at that location
+			tUnit = GetUnitAtPosition(gridCoords[0], gridCoords[1]);	// get that unit and store it in tUnit var
 			
-				// check that unit is on opposite team
-				if (!UnitOnCurrentTeam(tUnit)) {
+			if (tUnit != noone) {										// make sure GetUnitAtPosition() didnt return null
+				
+				if (!UnitOnCurrentTeam(tUnit)) {						// check that the unit is on opposite team. Technically
+																		// you could remove this check if you wanted to be able 
+																		// to inspect your own teammates.
 					tUnit.showMovementRange = true;
 					tUnit.showAttackRange   = false;
 				}
@@ -28,21 +38,25 @@ if (oGameController.turnController.currentPlayerTurn.state != unitState.selectin
 		}
 	}
 
-	// Show Enemy Attack Range
-	if (mouse_check_button_pressed(mb_right)) {
-	
-		HideAllOtherRanges();
-		var gridCoords = WorldToGrid(mouse_x, mouse_y);
-	
-		// make sure there is a unit at that location
-		if (IsUnit(gridCoords[0], gridCoords[1])) {
-			var tUnit = GetUnitAtPosition(gridCoords[0], gridCoords[1]);
+	else if (mouse_check_button_pressed(mb_right)) {					// check for mouse right clicked
 		
-			// make sure GetUnitAtPosition() didnt return null
-			if (tUnit != noone) {
-			
-				// check that unit is on opposite team
-				if (!UnitOnCurrentTeam(tUnit)) {
+		HideAllOtherRanges();											// If any other ranges are visible, we want to
+																		// turn them all off so that we dont have a ton
+																		// of ranges being drawn all at once. This essentially
+																		// makes it so that only one range is visible at a
+																		// time. This script can be used in other scenarios
+																		// as well.
+		
+		var gridCoords = WorldToGrid(mouse_x, mouse_y);					// get grid u,v position based off of current mouse x,y
+	
+		if (HasUnit(gridCoords[0], gridCoords[1])) {					// make sure there is a unit at that location
+			tUnit = GetUnitAtPosition(gridCoords[0], gridCoords[1]);	// get that unit and store it in tUnit var
+		
+			if (tUnit != noone) {										// make sure GetUnitAtPosition() didnt return null
+				
+				if (!UnitOnCurrentTeam(tUnit)) {						// check that the unit is on opposite team. Technically
+																		// you could remove this check if you wanted to be able 
+																		// to inspect your own teammates.
 					tUnit.showMovementRange = false;
 					tUnit.showAttackRange   = true;
 				}

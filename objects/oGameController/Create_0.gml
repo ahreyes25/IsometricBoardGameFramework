@@ -1,22 +1,16 @@
-// Create game board
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 boardWidth  = 10;
 boardHeight = 10;
-board = ds_grid_create(boardWidth, boardHeight);
+tileWidth   = 64;
+tileHeight  = 32;
+debugging   = false;
+board		= ds_grid_create(boardWidth, boardHeight);
 
-// Clear board to 0's
+// Set the board to 1 by default, which represents a grass tile
 for (var u = 0; u < boardWidth; u++)  {
 	for (var v = 0; v < boardHeight; v++) {
-		// set to one
 		ds_grid_set(board, u, v, 1);
 	}
 }
-
-// Unit size
-tileWidth  = 64; // tile width
-tileHeight = 32; // tile height
-
-debugging  = false;
 
 // Controllers
 boardController = instance_create_layer(0, 0, "Controllers", oBoardController);
@@ -24,70 +18,86 @@ turnController  = instance_create_layer(0, 0, "Controllers", oTurnController);
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 // Create white team
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 for (var i = 0; i < 2; i++) {
-	var gi = irandom_range(0, 9);
-	var gj = irandom_range(0, 9);
+	var gi = irandom_range(0, 9);								// Pick a randon spot on the board
+	var gj = irandom_range(0, 9);								// Pick a randon spot on the board
 	
-	// Reroll until we get a valid spot
-	while (IsTerrain(gi, gj) || SpecificGround(gi, gj, ground.water) || IsUnit(gi, gj)) {
-		var gi = irandom_range(0, 9);
-		var gj = irandom_range(0, 9);
+	while ( HasSpecificGround(gi, gj, ground.water) ||
+			HasTerrain(gi, gj) ||						
+			HasUnit(gi, gj)) {									// Reroll until we get a valid spot that is not
+																// terrain, not water, and isn't occupied by another
+																// unit already
+				
+				var gi = irandom_range(0, 9);					// Pick a randon spot on the board
+				var gj = irandom_range(0, 9);					// Pick a randon spot on the board
 	}
 	
-	// Get world coordinates
-	var worldCoords = GridToWorld(gi, gj);
+	var worldCoords = GridToWorld(gi, gj);						// Get world coordinates
 	
-	// Create unit at point
-	var u = instance_create_layer(worldCoords[0], worldCoords[1], "World", oUnitParent);
-	u.sprite_index = sPlayer1Idle;
-	u.state = unitState.waiting;
-	u.team = oGameController.turnController.whiteTeam;
-	u.unitType = unit.white;
+	var u = instance_create_layer(worldCoords[0],				// Create unit at point
+								  worldCoords[1], 
+								  "World", oUnitParent);
+								  
+	u.sprite_index	= sPlayer1Idle;								// Set unit starting sprite
+	u.state			= unitState.waiting;						// Set unit starting state
+	u.team			= oGameController.turnController.whiteTeam; // Set unit team
+	u.unitType		= unit.white;								// Set unit type
 	
-	// Add unit to team
-	ds_list_add(turnController.whiteTeam, u);
+	ds_list_add(turnController.whiteTeam, u);					// Add unit to team list
 	
-	// Add unit value to board info
-	ds_grid_set(board, gi, gj, ds_grid_get(board, gi, gj) + u.unitType);
-	ds_grid_set(board, gi, gj, ds_grid_get(board, gi, gj) + u.state);
+	ds_grid_set(board, gi, gj,									// Add unit value to board info
+		ds_grid_get(board, gi, gj) + u.unitType);
+		
+	ds_grid_set(board, gi, gj,									// Add unit value to board info
+		ds_grid_get(board, gi, gj) + u.state);
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 // Create black team
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 for (var i = 0; i < 2; i++) {
-	var gi = irandom_range(0, 9);
-	var gj = irandom_range(0, 9);
+	var gi = irandom_range(0, 9);								// Pick a randon spot on the board
+	var gj = irandom_range(0, 9);								// Pick a randon spot on the board
 	
-	// Reroll until we get a valid spot
-	while (IsTerrain(gi, gj) || SpecificGround(gi, gj, ground.water) || IsUnit(gi, gj)) {
-		var gi = irandom_range(0, 9);
-		var gj = irandom_range(0, 9);
+	while ( HasTerrain(gi, gj) || 
+			HasSpecificGround(gi, gj, ground.water) || 
+			HasUnit(gi, gj)) {									// Reroll until we get a valid spot that is not
+																// terrain, not water, and isn't occupied by another
+																// unit already
+																
+				var gi = irandom_range(0, 9);					// Pick a randon spot on the board
+				var gj = irandom_range(0, 9);					// Pick a randon spot on the board
 	}
 	
-	// Get world coordinates
-	var worldCoords = GridToWorld(gi, gj);
+	var worldCoords = GridToWorld(gi, gj);						// Get world coordinates
+
+	var u = instance_create_layer(worldCoords[0],				// Create unit at point
+								  worldCoords[1], 
+								  "World", oUnitParent);
+								  
+	u.sprite_index	= sPlayer2Idle;								// Set unit starting sprite
+	u.state			= unitState.waiting;						// Set unit starting state
+	u.team			= oGameController.turnController.blackTeam; // Set unit team
+	u.unitType		= unit.black;								// Set unit type
 	
-	// Create unit at point
-	var u = instance_create_layer(worldCoords[0], worldCoords[1], "World", oUnitParent);
-	u.sprite_index = sPlayer2Idle;
-	u.state = unitState.waiting;
-	u.team  = oGameController.turnController.blackTeam;
-	u.unitType = unit.black;
+	ds_list_add(turnController.blackTeam, u);					// Add unit to team lit
 	
-	// Add unit to team
-	ds_list_add(turnController.blackTeam, u);
-	
-	// Add unit value to board info
-	ds_grid_set(board, gi, gj, ds_grid_get(board, gi, gj) + u.unitType);
-	ds_grid_set(board, gi, gj, ds_grid_get(board, gi, gj) + u.state);
+	ds_grid_set(board, gi, gj,									// Add unit value to board info
+		ds_grid_get(board, gi, gj) + u.unitType);
+		
+	ds_grid_set(board, gi, gj,									// Add unit value to board info
+		ds_grid_get(board, gi, gj) + u.state);
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 // Set starting team and starting player
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 turnController.currentTeamTurn = ds_list_find_value(turnController.teams, turnController.currentTeamIndex);
 turnController.currentPlayerTurn = ds_list_find_value(turnController.currentTeamTurn, 0);
 UpdateTeamOrder();
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 // Create camera
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 camera = instance_create_layer(0, 0, "Controllers", oCamera);

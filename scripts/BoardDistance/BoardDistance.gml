@@ -6,6 +6,8 @@
 /// @param u2
 /// @param v2
 
+// Compute basic distance check --> dist = abs(x2-x1) + abs(y2-y1)
+
 var u1 = argument0;
 var v1 = argument1;
 var u2 = argument2;

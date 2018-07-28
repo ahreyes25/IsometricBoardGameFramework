@@ -1,8 +1,8 @@
 {
-    "id": "a6812c80-251b-403d-816c-5474c3875392",
+    "id": "e7083532-b4e6-4792-ac72-cbdb5850c5dd",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "SpecificTerrain",
+    "name": "HasTerrain",
     "IsCompatibility": false,
     "IsDnD": false
 }

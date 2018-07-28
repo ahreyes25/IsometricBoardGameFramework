@@ -40,4 +40,10 @@ switch (state) {
 		draw_text_transformed(10, 460, "End Turn", 1, 1, 0);
 	break;
 	#endregion
+	
+	// Insert your own states here
+	// #region
+		// Code that you want to execute when
+		// this state is the active state.
+	// #endregion
 }

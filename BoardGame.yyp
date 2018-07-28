@@ -262,7 +262,7 @@
                 "resourceCreationConfigs": [
                     "default"
                 ],
-                "resourcePath": "scripts\/IsUnit\/IsUnit.yy",
+                "resourcePath": "scripts\/HasUnit\/HasUnit.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -300,7 +300,7 @@
                 "resourceCreationConfigs": [
                     "default"
                 ],
-                "resourcePath": "scripts\/SpecificGround\/SpecificGround.yy",
+                "resourcePath": "scripts\/HasSpecificGround\/HasSpecificGround.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -585,7 +585,7 @@
                 "resourceCreationConfigs": [
                     "default"
                 ],
-                "resourcePath": "scripts\/SpecificUnit\/SpecificUnit.yy",
+                "resourcePath": "scripts\/HasSpecificUnit\/HasSpecificUnit.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -1103,25 +1103,6 @@
             }
         },
         {
-            "Key": "99d76cc3-5150-4c89-adca-368d11c64392",
-            "Value": {
-                "id": "e6445e36-1e25-48a0-88c3-a18481af97ea",
-                "modelName": "GMResourceInfo",
-                "mvc": "1.0",
-                "configDeltaFiles": [
-                    
-                ],
-                "configDeltas": [
-                    
-                ],
-                "resourceCreationConfigs": [
-                    "default"
-                ],
-                "resourcePath": "scripts\/ResetTeamToActive\/ResetTeamToActive.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "a0420c59-6d98-4fa1-ab76-d4029c426bde",
             "Value": {
                 "id": "1a3a451a-fcc1-4122-b1ce-a95b00b24678",
@@ -1155,7 +1136,7 @@
                 "resourceCreationConfigs": [
                     "default"
                 ],
-                "resourcePath": "scripts\/SpecificTerrain\/SpecificTerrain.yy",
+                "resourcePath": "scripts\/HasSpecificTerrain\/HasSpecificTerrain.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -1388,6 +1369,25 @@
             }
         },
         {
+            "Key": "d8d1c572-d32b-4dab-88f0-36723d7adccd",
+            "Value": {
+                "id": "7809643d-eef5-45f8-ac22-269c5189938a",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "scripts\/CleanupBoardStates\/CleanupBoardStates.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "db30993f-3712-4696-8707-47e446f203bb",
             "Value": {
                 "id": "6b833a5c-c49a-479e-9e6a-6ba580c02fff",
@@ -1478,7 +1478,26 @@
                 "resourceCreationConfigs": [
                     "default"
                 ],
-                "resourcePath": "scripts\/IsTerrain\/IsTerrain.yy",
+                "resourcePath": "scripts\/HasTerrain\/HasTerrain.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "e9e40899-7967-419c-bd2d-409b703e47a2",
+            "Value": {
+                "id": "0027d28b-045a-4ced-8c68-d54eebdb63d1",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "scripts\/ResetTeamToActive\/ResetTeamToActive.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -1554,7 +1573,7 @@
                 "resourceCreationConfigs": [
                     "default"
                 ],
-                "resourcePath": "scripts\/IsGround\/IsGround.yy",
+                "resourcePath": "scripts\/HasGround\/HasGround.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -1665,7 +1684,8 @@
         "5e4432ca-e8b4-4e2f-9f31-468bc761e7e1",
         "0ad000fb-ab66-4304-9c58-6c2ca9344a31",
         "2536620a-01a3-47cc-9383-8c63c21586a2",
-        "99d76cc3-5150-4c89-adca-368d11c64392",
+        "d8d1c572-d32b-4dab-88f0-36723d7adccd",
+        "e9e40899-7967-419c-bd2d-409b703e47a2",
         "2607eee9-2a78-4271-a5c6-f72eff037def",
         "a6812c80-251b-403d-816c-5474c3875392",
         "5431fa44-0144-453a-b24f-72466d45db0b",

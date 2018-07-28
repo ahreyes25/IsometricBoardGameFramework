@@ -1,15 +1,17 @@
-/// @description Go through every unit in a team and set their booleans
-//					that keep track of attacking and moving to false
+/// @desription		When we switch back to our team, we want to set all of the units to 
+//					active, and we do this by resetting their flags, in this case, it is
+//					simply hasAttacked and hasMoved that is check to see if the unit is 
+//					active or deactivated
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 /// @param team
 
-var t = argument0;
+var team = argument0;
 
-for (var i = 0; i < ds_list_size(t); i++) {
-	var tUnit = ds_list_find_value(t, i); 
+for (var i = 0; i < ds_list_size(team); i++) {
+	var tUnit = ds_list_find_value(team, i);
 	tUnit.hasAttacked = false;
 	tUnit.hasMoved    = false;
 }
 
-
-// This gets called in our NextTeam() and PreviousTeam() Scripts
+// This gets called in NextTeam and PreviousTeam scripts

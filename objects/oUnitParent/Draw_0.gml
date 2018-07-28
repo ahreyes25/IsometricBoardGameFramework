@@ -1,5 +1,6 @@
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 // Set sprites dependig on which team the player is on
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 if (team == oGameController.turnController.blackTeam) {
 	var sprIdle = sPlayer1Idle;
 	var sprRun  = sPlayer1Run;
@@ -11,13 +12,16 @@ else if (team == oGameController.turnController.whiteTeam) {
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 // If debugging, draw the player semi transparent
-
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 if (oGameController.debugging) {
 	DrawDebugInfo();
 	DebugGridValues();
 	draw_sprite_ext(sprIdle, image_index, x, y, image_xscale, image_yscale, 0, c_white, 0.5);
 }
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 // Not debugging
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 else {
 	switch (state) {
 		#region // Waiting State
@@ -84,6 +88,12 @@ else {
 			draw_sprite_ext(sprIdle, image_index, x, y, image_xscale, image_yscale, 0, c_white, 1);
 		break;
 		#endregion
+		
+		// Insert your own states here
+		// #region
+			// Code that you want to execute when
+			// this state is the active state.
+		// #endregion
 	}
 }
 

@@ -1,0 +1,1 @@
+draw_text_transformed(10, 0, "FPS: " + string(fps), 1, 1, 0);

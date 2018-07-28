@@ -1,8 +1,8 @@
 {
-    "id": "e9e40899-7967-419c-bd2d-409b703e47a2",
+    "id": "2607eee9-2a78-4271-a5c6-f72eff037def",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "ResetTeamToActive",
+    "name": "HasSpecificGround",
     "IsCompatibility": false,
     "IsDnD": false
 }
